@@ -1,0 +1,20 @@
+{
+    "name": "diviframework/{{plugin_slug}}",
+    "description": "{{plugin_description}}",
+    "type": "project",
+    "license": "GPLv2",
+    "authors": [
+        {
+            "name": "{{plugin_author}}",
+            "email": "support@diviframework.com"
+        }
+    ],
+    "require": {
+        "pimple/pimple": "~3.0"
+    },
+    "autoload" : {
+        "psr-4" : {
+            "{{composer_namespace}}\\" : "src/"
+        }
+    }
+}
