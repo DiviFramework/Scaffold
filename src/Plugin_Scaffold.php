@@ -56,9 +56,6 @@ class Plugin_Scaffold
             }
         }
 
-        $plugin_path = "$plugin_dir/$plugin_slug.php";
-        $plugin_readme_path = "$plugin_dir/readme.txt";
-
         // copy template files to plugin folder.
         $util->clone_folder(DF_SCAFFOLD_DIR . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . 'plugin', $plugin_dir);
 
