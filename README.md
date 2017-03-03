@@ -1,52 +1,29 @@
-diviframework/scaffold-package
-==============================
-
-Scaffold tool for modern WordPress development
+#Divi Framework Scaffolding Tool using WP CLI.
 
 
-
-Quick links: [Using](#using) | [Installing](#installing) | [Contributing](#contributing)
-
-## Using
+##Installation
+**wp package install diviframework/scaffold** (package is gone for approval so I am not sure what the final slug will be)
 
 
+##Plugin Scaffold
+**wp df-scaffold plugin sample-plugin --plugin_name="Sample Plugin" --plugin_package=Sample_Plugin  --plugin_description="My Sample Plugin"  --plugin_author="Me" --plugin_author_uri="http://me.example.com"   --plugin_uri="http://plugin.example.com"   --namespace="My\SamplePlugin" --version_constant=SAMPLE_PLUGIN_VERSION --dir_constant=SAMPLE_PLUGIN_DIR --url_constant=SAMPLE_PLUGIN_URL**
 
-## Installing
-
-Installing this package requires WP-CLI v1.1.0 or greater. Update to the latest stable release with `wp cli update`.
-
-Once you've done so, you can install this package with `wp package install diviframework/scaffold-package`.
-
-## Contributing
-
-We appreciate you taking the initiative to contribute to this project.
-
-Contributing isn’t limited to just code. We encourage you to contribute in the way that best fits your abilities, by writing tutorials, giving a demo at your local meetup, helping other users with their support questions, or revising our documentation.
-
-### Reporting a bug
-
-Think you’ve found a bug? We’d love for you to help us get it fixed.
-
-Before you create a new issue, you should [search existing issues](https://github.com/diviframework/scaffold-package/issues?q=label%3Abug%20) to see if there’s an existing resolution to it, or if it’s already been fixed in a newer version.
-
-Once you’ve done a bit of searching and discovered there isn’t an open or fixed issue for your bug, please [create a new issue](https://github.com/diviframework/scaffold-package/issues/new) with the following:
-
-1. What you were doing (e.g. "When I run `wp post list`").
-2. What you saw (e.g. "I see a fatal about a class being undefined.").
-3. What you expected to see (e.g. "I expected to see the list of posts.")
-
-Include as much detail as you can, and clear steps to reproduce if possible.
-
-### Creating a pull request
-
-Want to contribute a new feature? Please first [open a new issue](https://github.com/diviframework/scaffold-package/issues/new) to discuss whether the feature is a good fit for the project.
-
-Once you've decided to commit the time to seeing your pull request through, please follow our guidelines for creating a pull request to make sure it's a pleasant experience:
-
-1. Create a feature branch for each contribution.
-2. Submit your pull request early for feedback.
-3. Include functional tests with your changes. [Read the WP-CLI documentation](https://wp-cli.org/docs/pull-requests/#functional-tests) for an introduction.
-4. Follow the [WordPress Coding Standards](http://make.wordpress.org/core/handbook/coding-standards/).
+The above command will created plugin from the boilerplate and do a composer install.
 
 
-*This README.md is generated dynamically from the project's codebase using `wp scaffold package-readme` ([doc](https://github.com/wp-cli/scaffold-package-command#wp-scaffold-package-readme)). To suggest changes, please submit a pull request against the corresponding part of the codebase.*
+##Custom post type within the plugin.
+**wp scaffold post-type movies --label=Movie --textdomain=sample-plugin --plugin=sample-plugin**
+
+Here we use the standard wp scaffold command to scaffold post type. Make sure the plugin slug argument is included (--plugin=)
+
+
+##Custom taxonomy within the plugin.
+**wp scaffold taxonomy movie_taxonomy --post_types=movies --plugin=sample-plugin**
+
+Here we use the standard wp scaffold command to scaffold taxonomy. Make sure the plugin slug argument is included (--plugin=)
+
+
+##Child Theme
+**wp df-scaffold child-theme acme-theme --theme_name="Acme Theme "  --author="Acme" --author_uri="http://acme.example.com"  --parent_theme=Divi --theme_uri=http://elegantthemes.com**
+
+This command will created a child theme based off https://github.com/elegantthemes/divi-child-theme-init/
