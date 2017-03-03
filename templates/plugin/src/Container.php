@@ -57,7 +57,6 @@ class Container extends PimpleContainer
      */
     public function actionInit()
     {
-        $this['custom_posts']->register();
         $this['api']->register();
     }
 
@@ -66,6 +65,9 @@ class Container extends PimpleContainer
      */
     public function run()
     {
+        // register custom posts
+        $this['custom_posts']->register();
+
         add_action('init', array($this, 'actionInit'));
         add_action('admin_init', array($this['admin'], 'init'));
         // divi module register.
