@@ -44,6 +44,7 @@ require_once {{dir_constant}} . '/vendor/autoload.php';
 
 $container = new \{{namespace}}\Container;
 $container['license'] = $license;
+$container['plugin_name'] = '{{plugin_name}}';
 
 // activation hook.
 register_activation_hook(__FILE__, array($container['activation'], 'install'));

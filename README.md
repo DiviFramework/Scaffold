@@ -26,4 +26,4 @@ Here we use the standard wp scaffold command to scaffold taxonomy. Make sure the
 ##Child Theme
 **wp df-scaffold child-theme acme-theme --theme_name="Acme Theme "  --author="Acme" --author_uri="http://acme.example.com"  --parent_theme=Divi --theme_uri=http://elegantthemes.com**
 
-This command will created a child theme based off https://github.com/elegantthemes/divi-child-theme-init/
+This command will created a child theme based off https://github.com/elegantthemes/divi-child-theme-init/	

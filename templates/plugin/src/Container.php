@@ -50,6 +50,14 @@ class Container extends PimpleContainer
         $this['divi_modules'] = function ($container) {
             return new DiviModules($container);
         };
+
+         $this['plugins'] = function ($container) {
+            return new Plugins($container);
+         };
+        
+         $this['themes'] = function ($container) {
+            return new Themes($container);
+         };
     }
 
     /**
@@ -70,8 +78,15 @@ class Container extends PimpleContainer
 
         add_action('init', array($this, 'actionInit'));
         add_action('admin_init', array($this['admin'], 'init'));
+
         // divi module register.
         add_action('et_builder_ready', array($this['divi_modules'], 'register'), 1);
+
+        // register your shortcodes.
         $this['shortcodes']->add();
+
+        // check for plugin dependancies.
+        add_action('plugins_loaded', array($this['plugins'], 'checkDependancies'));
+        add_action('plugins_loaded', array($this['themes'], 'checkDependancies'));
     }
 }
