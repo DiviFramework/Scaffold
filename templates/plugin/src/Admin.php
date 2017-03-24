@@ -20,6 +20,5 @@ class Admin
      */
     public function init()
     {
-        $this->container['menu']->adminMenu();
     }
 }

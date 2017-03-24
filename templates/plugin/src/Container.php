@@ -77,7 +77,7 @@ class Container extends PimpleContainer
         $this['custom_posts']->register();
 
         add_action('init', array($this, 'actionInit'));
-        add_action('admin_init', array($this['admin'], 'init'));
+        add_action('init', array($this['menu'], 'adminMenu'));
 
         // divi module register.
         add_action('et_builder_ready', array($this['divi_modules'], 'register'), 1);
@@ -88,5 +88,34 @@ class Container extends PimpleContainer
         // check for plugin dependancies.
         add_action('plugins_loaded', array($this['plugins'], 'checkDependancies'));
         add_action('plugins_loaded', array($this['themes'], 'checkDependancies'));
+    }
+
+
+    /**
+     * Register license.
+     */
+    public function registerLicense()
+    {
+        // License check.
+        // License setup.
+        // Load the API Key library if it is not already loaded. Must be placed in the root plugin file.
+        if (! class_exists('AM_License_Menu')) {
+            require_once($this['plugin_dir'] . '/am-license-menu.php');
+        }
+
+        /**
+         * @param string $file             Must be __FILE__ from the root plugin file, or theme functions file.
+         * @param string $software_title   Must be exactly the same as the Software Title in the product.
+         * @param string $software_version This product's current software version.
+         * @param string $plugin_or_theme  'plugin' or 'theme'
+         * @param string $api_url          The URL to the site that is running the API Manager. Example: https://www.toddlahman.com/
+         *
+         * @return \AM_License_Submenu|null
+         */
+        $license = new \AM_License_Menu($this['plugin_file'], $this['plugin_name'], $this['plugin_version'], 'plugin', 'https://www.diviframework.com/', '', '');
+
+        $this['license'] = $license;
+
+        return $license;
     }
 }

@@ -21,8 +21,8 @@ class CustomPosts
     // register your custom post and taxonomy here.
     public function register()
     {
-        $postsDir = {{dir_constant}} . '/post-types';
-        $taxonomiesDir = {{dir_constant}} . '/taxonomies';
+        $postsDir = $this->container['plugin_dir'] . '/post-types';
+        $taxonomiesDir = $this->container['plugin_dir'] . '/taxonomies';
 
         $this->includeFiles($postsDir);
         $this->includeFiles($taxonomiesDir);
@@ -35,7 +35,7 @@ class CustomPosts
     {
         if (is_dir($dir)) {
             foreach (glob($dir . "/*.php") as $file) {
-                include $file;
+                include_once $file;
             }
         }
     }
