@@ -1,5 +1,6 @@
 rm -rf templates/child-theme/*;
 cp -r templates/divi-child-theme-init/* templates/child-theme;
+cp -r templates/divi-child-theme-init/.gitignore templates/child-theme/.gitignore;
 
 cd templates/child-theme;
 grep -rl 'Theme Name:\ \ \ Divi Child Theme' ./ | xargs sed -i "s/Theme Name:\ \ \ Divi Child Theme/Theme Name:\ \ \ {{theme_name}}/g"
