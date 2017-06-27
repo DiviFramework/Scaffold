@@ -50,5 +50,10 @@ class ChildTheme_Scaffold
         } else if (\WP_CLI\Utils\get_flag_value($assoc_args, 'enable-network')) {
             WP_CLI::run_command(array( 'theme', 'enable', $theme_slug ), array( 'network' => true ));
         }
+
+        WP_CLI::line('Running npm install...');
+        exec("cd $theme_dir; npm install > /dev/null");
+
+        WP_CLI::line("Run 'gulp watch' to watch for scss file changes and 'gulp styles' to trigger compilation.");
     }
 }
