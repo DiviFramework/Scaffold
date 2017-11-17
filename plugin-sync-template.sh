@@ -1,5 +1,6 @@
 rm -rf templates/plugin/*;
 cp -r templates/divi-framework-plugin-boilerplate/* templates/plugin;
+cp -r templates/divi-framework-plugin-boilerplate/.circleci templates/plugin;
 rm -rf templates/plugin/vendor;
 rm -rf templates/plugin/composer.lock;
 
