@@ -187,10 +187,27 @@ if (! class_exists('AM_License_Menu')) {
          */
         public function register_menu()
         {
-            add_options_page(__($this->ame_settings_menu_title, $this->text_domain), __($this->ame_settings_menu_title, $this->text_domain), 'manage_options', $this->ame_activation_tab_key, array(
+            if (empty($GLOBALS['admin_page_hooks']['df-main'])) {
+                add_menu_page('{{plugin_author}}', '{{plugin_author}}', 'manage_options', 'df-main', array($this, 'main_page'), $this->container['plugin_url']. '/resources/images/df-logo.png');
+            }
+
+
+            add_submenu_page(
+                'df-main',
+                __($this->ame_settings_menu_title, $this->text_domain),
+                __($this->ame_settings_menu_title, $this->text_domain),
+                'manage_options',
+                $this->ame_activation_tab_key,
+                array(
                 $this,
                 'config_page'
-            ));
+                )
+            );
+        }
+
+        public function main_page()
+        {
+            echo "<h1>{{plugin_author}}</h1>";
         }
 
         /**

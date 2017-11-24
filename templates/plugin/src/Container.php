@@ -60,13 +60,6 @@ class Container extends PimpleContainer
          };
     }
 
-    /**
-     * Init hook.
-     */
-    public function actionInit()
-    {
-        $this['api']->register();
-    }
 
     /**
      * Start the plugin
@@ -76,8 +69,7 @@ class Container extends PimpleContainer
         // register custom posts
         $this['custom_posts']->register();
 
-        add_action('init', array($this, 'actionInit'));
-        add_action('init', array($this['menu'], 'adminMenu'));
+        add_action('register_shortcode_ui', array( $this['shortcake'], 'register_shortcode_ui'));
 
         // divi module register.
         add_action('et_builder_ready', array($this['divi_modules'], 'register'), 1);
@@ -88,6 +80,14 @@ class Container extends PimpleContainer
         // check for plugin dependancies.
         add_action('plugins_loaded', array($this['plugins'], 'checkDependancies'));
         add_action('plugins_loaded', array($this['themes'], 'checkDependancies'));
+    }
+
+    public function plugin_add_settings_link($links)
+    {
+        $settings_link = sprintf('<a href="%s%s">', admin_url('admin.php?page='), $this['license']->ame_activation_tab_key) . __('Settings') . '</a>';
+        // dump($settings_link);
+        array_push($links, $settings_link);
+        return $links;
     }
 
 
