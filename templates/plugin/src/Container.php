@@ -35,6 +35,10 @@ class Container extends PimpleContainer
             return new Shortcodes($container);
         };
 
+        $this['shortcake'] = function ($container) {
+            return new Shortcake($container);
+        };
+
         $this['api'] = function ($container) {
             return new API($container);
         };
