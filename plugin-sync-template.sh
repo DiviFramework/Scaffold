@@ -18,5 +18,6 @@ grep -rl 'DF_DIR' ./ | xargs sed -i "s/DF_DIR/{{dir_constant}}/g"
 grep -rl 'DF_URL' ./ | xargs sed -i "s/DF_URL/{{url_constant}}/g"
 grep -rl 'namespace\ DF' ./ | xargs sed -i 's,namespace\ DF,namespace\ {{namespace}},g'
 grep -rl '\\DF\\Container;' divi-framework-plugin-boilerplate.php | xargs sed -i 's,\\DF\\Container;,\\{{namespace}}\\Container;,g'
+grep -rl '\\DF\\Container' tests/test-sample.php | xargs sed -i 's,\\DF\\Container,\\{{namespace}}\\Container,g'
 grep -rl 'DF\\\\' composer.json | xargs sed -i 's,DF\\\\,{{composer_namespace}}\\\\,g'
 grep -rl 'Divi Framework' ./ | xargs sed -i "s/Divi Framework/{{plugin_author}}/g"

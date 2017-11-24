@@ -22,7 +22,7 @@ define('{{url_constant}}', plugins_url('/'.basename(__DIR__)));
 
 require_once {{dir_constant}} . '/vendor/autoload.php';
 
-$container = new \{{namespace}}\Container;
+$container = \DF\Container::getInstance();
 $container['plugin_name'] = '{{plugin_name}}';
 $container['plugin_version'] = {{version_constant}};
 $container['plugin_file'] = __FILE__;

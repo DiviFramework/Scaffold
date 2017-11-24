@@ -8,6 +8,7 @@ use Pimple\Container as PimpleContainer;
  */
 class Container extends PimpleContainer
 {
+    public static $instance;
 
     /**
      * Constructor
@@ -15,6 +16,15 @@ class Container extends PimpleContainer
     public function __construct()
     {
         $this->initObjects();
+    }
+
+    public static function getInstance()
+    {
+        if (is_null(self::$instance)) {
+            self::$instance = new Container;
+        }
+
+        return self::$instance;
     }
 
 
