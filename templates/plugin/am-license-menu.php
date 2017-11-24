@@ -55,6 +55,7 @@ if (! class_exists('AM_License_Menu')) {
         public $ame_instance_id;
         public $ame_domain;
         public $ame_software_version;
+        public $container;
 
         /**
          * @var null
@@ -72,16 +73,16 @@ if (! class_exists('AM_License_Menu')) {
          *
          * @return \AM_License_Menu|null
          */
-        public static function instance($file, $software_title, $software_version, $plugin_or_theme, $api_url, $text_domain = '', $extra = '')
+        public static function instance($file, $software_title, $software_version, $plugin_or_theme, $api_url, $text_domain = '', $extra = '', $container)
         {
             if (is_null(self::$_instance)) {
-                self::$_instance = new self($file, $software_title, $software_version, $plugin_or_theme, $api_url, $text_domain, $extra);
+                self::$_instance = new self($file, $software_title, $software_version, $plugin_or_theme, $api_url, $text_domain, $extra, $container);
             }
 
             return self::$_instance;
         }
 
-        public function __construct($file, $software_title, $software_version, $plugin_or_theme, $api_url, $text_domain, $extra)
+        public function __construct($file, $software_title, $software_version, $plugin_or_theme, $api_url, $text_domain, $extra, $container)
         {
             $this->file            = $file;
             $this->software_title  = $software_title;
@@ -90,6 +91,7 @@ if (! class_exists('AM_License_Menu')) {
             $this->api_url         = $api_url;
             $this->text_domain     = $text_domain;
             $this->extra           = $extra;
+            $this->container           = $container;
             $this->data_prefix     = str_ireplace(array( ' ', '_', '&', '?' ), '_', strtolower($this->software_title));
 
             if (is_admin()) {
