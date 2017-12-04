@@ -18,8 +18,7 @@ class Shortcodes
     /**
      * Register shortcodes.
      */
-    public function add()
+    public function register()
     {
-        // Add shortcodes here
     }
 }

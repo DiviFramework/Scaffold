@@ -89,7 +89,9 @@ class Container extends PimpleContainer
         add_action('et_builder_ready', array($this['divi_modules'], 'register'), 1);
 
         // register your shortcodes.
-        $this['shortcodes']->add();
+        add_action('init', array('shortcodes', 'register'));
+
+        add_filter("plugin_action_links_" . plugin_basename($this['plugin_file']), array($this, 'plugin_add_settings_link'));
 
         // check for plugin dependancies.
         add_action('plugins_loaded', array($this['plugins'], 'checkDependancies'));
@@ -99,7 +101,6 @@ class Container extends PimpleContainer
     public function plugin_add_settings_link($links)
     {
         $settings_link = sprintf('<a href="%s%s">', admin_url('admin.php?page='), $this['license']->ame_activation_tab_key) . __('Settings') . '</a>';
-        // dump($settings_link);
         array_push($links, $settings_link);
         return $links;
     }
@@ -126,7 +127,7 @@ class Container extends PimpleContainer
          *
          * @return \AM_License_Submenu|null
          */
-        $license = new \AM_License_Menu($this['plugin_file'], $this['plugin_name'], $this['plugin_version'], 'plugin', 'https://www.diviframework.com/', '', '');
+        $license = new \AM_License_Menu($this['plugin_file'], $this['plugin_name'], $this['plugin_version'], 'plugin', 'https://www.diviframework.com/', '', '', $this);
 
         $this['license'] = $license;
 
