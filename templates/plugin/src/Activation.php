@@ -5,27 +5,22 @@ namespace {{namespace}};
 /**
  * Activation class.
  */
-class Activation
-{
+class Activation {
 
-    protected $container;
+	protected $container;
 
-    public function __construct($container)
-    {
-        $this->container = $container;
-    }
+	public function __construct($container) {
+		$this->container = $container;
+	}
 
+	/**
+	 * Plugin activation.
+	 */
+	public function install() {
+		$this->container['license']->init(); //License init while activating.
 
-    /**
-     * Plugin activation.
-     */
-    public function install()
-    {
-        // initialise activation data.
-        $this->container['license']->activation();
-        
-        //Custom Post Types
-        $this->container['custom_posts']->register();
-        flush_rewrite_rules();
-    }
+		//Custom Post Types
+		$this->container['custom_posts']->register();
+		flush_rewrite_rules();
+	}
 }

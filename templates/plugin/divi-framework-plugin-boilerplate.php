@@ -12,13 +12,13 @@
  * @package         {{package_name}}
  */
 
-if (! defined('ABSPATH')) {
-    exit; // Exit if accessed directly
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly
 }
 
 define('{{version_constant}}', '0.1.0');
 define('{{dir_constant}}', __DIR__);
-define('{{url_constant}}', plugins_url('/'.basename(__DIR__)));
+define('{{url_constant}}', plugins_url('/' . basename(__DIR__)));
 
 require_once {{dir_constant}} . '/vendor/autoload.php';
 
@@ -29,9 +29,6 @@ $container['plugin_file'] = __FILE__;
 $container['plugin_dir'] = {{dir_constant}};
 $container['plugin_url'] = {{url_constant}};
 $container['plugin_slug'] = '{{plugin_slug}}';
-
-//register API license checks.
-$container->registerLicense();
 
 // activation hook.
 register_activation_hook(__FILE__, array($container['activation'], 'install'));
