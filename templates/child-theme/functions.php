@@ -18,6 +18,21 @@ function df_child_theme_register_required_plugins() {
 			'slug' => 'one-click-demo-import',
 			'required'  => true,
 		),
+		        array(
+            'name' => 'Duplicate Posts',
+            'slug' => 'duplicate-post',
+            'required'  => true,
+        ),
+        array(
+            'name' => 'Widget Importer',
+            'slug' => 'widget-importer-exporter',
+            'required'  => true,
+        ),
+        array(
+            'name' => 'Customizer Export Import',
+            'slug' => 'customizer-export-import',
+            'required'  => true,
+        ),
 		array(
 			'name'         => 'Divi Framework Dashboard Plugin',
 			'slug'         => 'diviframework',
